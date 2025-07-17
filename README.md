@@ -1,6 +1,6 @@
 # 🍽️ Food Recipe App
 
-![App Banner](https://via.placeholder.com/1200x400.png?text=Food+Recipe+App)  
+![App Banner](./assets/icon.png)  
 *A beautiful and responsive mobile app to explore, search, and view delicious meal recipes from around the world.*
 
 ---
