@@ -5,13 +5,18 @@ import {
   SafeAreaView,
   Image,
   TextInput,
+  StyleSheet,
+  Platform,
+  StatusBar
 } from "react-native";
+
 import React, { useEffect, useState } from "react";
 import {
   MagnifyingGlassIcon,
   AdjustmentsHorizontalIcon,
 } from "react-native-heroicons/outline";
-import { StatusBar } from "expo-status-bar";
+
+
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import Categories from "../component/Catagories";
 import axios from "axios";
@@ -62,90 +67,92 @@ export default function HomeScreen() {
   };
 
   return (
-    <View className="flex-1 bg-white">
-      <StatusBar style="dark" />
+    <SafeAreaView style={styles.header}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingBottom: 10,
+        }}>
 
-      <SafeAreaView>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            paddingBottom: 50,
-          }}
-          className="space-y-6 pt-14"
-        >
-
-          <View className="mx-4 flex-row justify-between items-center">
-            <AdjustmentsHorizontalIcon size={hp(4)} color={"gray"} />
-            <Image
-              source={require("../../assets/image/avatar.png")}
-              style={{
-                width: hp(5),
-                height: hp(5),
-                resizeMode: "cover",
-              }}
-              className="rounded-full"
-            />
-          </View>
+        <View className="mx-4 flex-row justify-between items-center">
+          <AdjustmentsHorizontalIcon size={hp(4)} color={"gray"} />
+          <Image
+            source={require("../../assets/image/avatar.png")}
+            style={{
+              width: hp(5),
+              height: hp(5),
+              resizeMode: "cover",
+            }}
+            className="rounded-full"
+          />
+        </View>
 
 
-          <View className="mx-4 space-y-1 mb-2">
-            <View>
-              <Text
-                style={{
-                  fontSize: hp(3.5),
-                }}
-                className="font-bold text-neutral-800"
-              >
-                Fast & Delicious
-              </Text>
-            </View>
-
+        <View className="mx-4 space-y-1 mb-2">
+          <View>
             <Text
               style={{
                 fontSize: hp(3.5),
               }}
-              className="font-extrabold text-neutral-800"
+              className="font-bold text-neutral-800"
             >
-              Food You <Text className="text-[#f64e32]">Love</Text>
+              Fast & Delicious
             </Text>
           </View>
 
+          <Text
+            style={{
+              fontSize: hp(3.5),
+            }}
+            className="font-extrabold text-neutral-800"
+          >
+            Food You <Text className="text-[#f64e32]">Love</Text>
+          </Text>
+        </View>
 
-          <View className="mx-4 flex-row items-center border rounded-xl border-black p-[6px]">
-            <View className="bg-white rounded-full p-2">
-              <MagnifyingGlassIcon
-                size={hp(2.5)}
-                color={"gray"}
-                strokeWidth={3}
-              />
-            </View>
-            <TextInput
-              placeholder="Search Your Favorite Food"
-              placeholderTextColor={"gray"}
-              style={{
-                fontSize: hp(1.7),
-              }}
-              className="flex-1 text-base mb-1 pl-1 tracking-widest"
+
+        <View className="mx-4 m-4 flex-row items-center border rounded-xl border-black p-[6px]">
+          <View className="bg-white rounded-full p-2">
+            <MagnifyingGlassIcon
+              size={hp(2.5)}
+              color={"gray"}
+              strokeWidth={3}
             />
           </View>
+          <TextInput
+            placeholder="Search Your Favorite Food"
+            placeholderTextColor={"gray"}
+            style={{
+              fontSize: hp(1.7),
+            }}
+            className="flex-1 text-base mb-1 pl-1 tracking-widest"
+          />
+        </View>
 
 
-          <View>
-            {categories.length > 0 && (
-              <Categories
-                categories={categories}
-                activeCategory={activeCategory}
-                handleChangeCategory={handleChangeCategory}
-              />
-            )}
-          </View>
+        <View>
+          {categories.length > 0 && (
+            <Categories
+              categories={categories}
+              activeCategory={activeCategory}
+              handleChangeCategory={handleChangeCategory}
+            />
+          )}
+        </View>
 
 
-          <View>
-            <Recipes meals={meals} categories={categories} />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </View>
+        <View>
+          <Recipes meals={meals} categories={categories} />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
+
+
+const styles = StyleSheet.create({
+  header: {
+    flex: 1,
+    marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
+  }
+})

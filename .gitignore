@@ -4,12 +4,7 @@ node_modules/
 .babelrc.js
 .babel.config.js
 
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-expo-debug.log
+.env
 
 # Metro
 .expo/
@@ -78,10 +73,10 @@ jest/
 *.temp
 *.bak
 *.lock
-.env
-.env.*
-.env.local
-.env.production.local
+# .env
+# .env.*
+# .env.local
+# .env.production.local
 
 # Cached images / thumbnails
 thumbs.db

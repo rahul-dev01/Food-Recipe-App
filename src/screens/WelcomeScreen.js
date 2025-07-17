@@ -13,6 +13,7 @@ export default function WelcomeScreen() {
   const navigation = useNavigation();
 
   return (
+    
     <View className="bg-[#f64e32] flex-1 justify-center items-center space-y-10 relative">
       <Image
         source={require("../../assets/image/background.png")}
@@ -23,9 +24,6 @@ export default function WelcomeScreen() {
           resizeMode: "cover",
         }}
       />
-
-      <StatusBar style="light" />
-
 
       <View>
         <LottieView
@@ -68,7 +66,7 @@ export default function WelcomeScreen() {
             paddingHorizontal: hp(5),
             borderRadius: hp(1.5),
           }}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Login")}
         >
           <Text
             style={{
